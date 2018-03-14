@@ -1,99 +1,57 @@
-# Senior-Design-Code
-# This code is for testing light sensor
-
-import RPi.GPIO as GPIO
+# Test light sensor
+# 10 based number output
 import time
+import RPi.GPIO as GPIO
+
+def convert_to_tens(digit_array):
+   result = 0
+   length = len(digit_array)
+   t0 = 0
+   while (t0<length):
+      t1 = digit_array[t0]
+
+      t2 = length - 1
+      t2 = t2 - t0
+      while(t2>0):
+         t1 = t1 * 2
+         t2 = t2 - 1
+      result = result + t1
+      t0 = t0 + 1
+   return result
 
 GPIO.setmode(GPIO.BCM)
-light_sensor_output = ""
+pin_to_circuit1 = 4 #clock signal
+pin_to_circuit2 = 17 #CS
+pin_to_circuit3 = 27 #Data
 
-# define the pin that goes to the circuit
-# Modify based on the PCB
-pin_to_circuit1 = 14 #light out
-pin_to_circuit2 = 15 #clk
-pin_to_circuit3 = 18 #cs
+data = []
 
-#pin_to_circuit9 = 25 #Light sensor output
-#EOC = 4 #End of Conversion signal - goes low during conversion
-#clock = 4
-#ALE = 12
-
-#pin_to_circuitA = 17 #MUX control bits
-#pin_to_circuitB = 27
-#pin_to_circuitC = 22
-
-
-#Configure to inputs
-GPIO.setup(pin_to_circuit1, GPIO.IN)
+GPIO.setup(pin_to_circuit1, GPIO.OUT)
 GPIO.setup(pin_to_circuit2, GPIO.OUT)
-GPIO.setup(pin_to_circuit3, GPIO.OUT)
+GPIO.setup(pin_to_circuit3, GPIO.IN)
 
-#GPIO.setup(pin_to_circuit9, GPIO.IN)
-#GPIO.setup(EOC, GPIO.IN)
+GPIO.output(pin_to_circuit2, GPIO.HIGH)
+time.sleep(0.5)
 
-#Control Signals
-#GPIO.setup(clock,GPIO.ALT0)
-#GPIO.setup(ALE,GPIO.OUT)
-#GPIO.setclock(clock,500000) #500KHz
-#GPIO.output(clock,1)
-
-#MUX controls - set to low
-##GPIO.setup(pin_to_circuitA, GPIO.OUT)
-##GPIO.setup(pin_to_circuitB, GPIO.OUT)
-##GPIO.setup(pin_to_circuitC, GPIO.OUT)
-
-#GPIO.output(pin_to_circuitA, 0)
-#GPIO.output(pin_to_circuitB, 0)
-#GPIO.output(pin_to_circuitC, 0)
-
-while True:
- #   light_sensor_output = ""
-
-    GPIO.output(ALE,GPIO.HIGH)
-    time.sleep(0.3)
-    GPIO.output(ALE,GPIO.LOW)
-    time.sleep(1)
-    
-    a_LSB = float(GPIO.input(pin_to_circuit1))
-    #light_sensor_output = light_sensor_output + str(a)
-    print("LSB: ", a_LSB)
-        
-    a_1 = float(GPIO.input(pin_to_circuit2))
-    #light_sensor_output = light_sensor_output + str(a)
-    print("Bit: ", a_1)
-
-    a_2 = float(GPIO.input(pin_to_circuit3))
-    #light_sensor_output = light_sensor_output + str(a)
-    print("Bit: ", a_2)
-        
-    a_3 = float(GPIO.input(pin_to_circuit4))
-    #light_sensor_output = light_sensor_output + str(a)
-    print("Bit: ", a_3)
-
-    a_4 = float(GPIO.input(pin_to_circuit5))
-    #light_sensor_output = light_sensor_output + str(a)
-    print("Bit: ", a_4)
-
-    a_5 = float(GPIO.input(pin_to_circuit6))
-    #light_sensor_output = light_sensor_output + str(a)
-    print("Bit: ", a_5)
-        
-    a_6 = float(GPIO.input(pin_to_circuit7))
-    #light_sensor_output = light_sensor_output + str(a)
-    print("Bit: ", a_6)
-
-    a_MSB = float(GPIO.input(pin_to_circuit8))
-    #light_sensor_output = light_sensor_output + str(a)
-    print("MSB: ", a_MSB)
-
-    a_7 = float(GPIO.input(pin_to_circuit9))
-    #light_sensor_output = light_sensor_output + str(a)
-    print("Actual analog output: ", a_7)
-
-    #a_8 = float(GPIO.input(EOC))
-    #print("End of conversion bit: ", EOC)
-        
-    # print(light_sensor_output)
+for j in range(0,1):
+   GPIO.output(pin_to_circuit2, GPIO.LOW)
+   for i in range(0,16): 
+      time.sleep(0.1)
+      GPIO.output(pin_to_circuit1, GPIO.LOW)
+      time.sleep(0.1)
+      GPIO.output(pin_to_circuit1, GPIO.HIGH)
 
 
-GPIO.setwarnings(disable)
+      data.insert(i,GPIO.input(pin_to_circuit3))
+      print(GPIO.input(pin_to_circuit3))
+
+   GPIO.output(pin_to_circuit2, GPIO.HIGH)
+
+
+GPIO.setwarnings(False)
+
+del data[12:16]
+del data[0:4]
+print(data)
+answer = convert_to_tens(data)
+print(answer)
