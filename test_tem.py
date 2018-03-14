@@ -1,5 +1,6 @@
 # Senior-Design-Code
 # This code is for testing the temperature sensor
+# This code is only for temperature not humandity
 
 import RPi.GPIO as GPIO
 import time
