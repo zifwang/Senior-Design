@@ -37,7 +37,7 @@ class Mapping:
 
     def add_data(self, key, value):
         # This function is used to add data into lists
-        # Call this function to add: self.add(key,value)
+        # Call this function to add: self.add(key,value) in main function 
         # Four cases: temperature, humidity, light, and PIR
         # In order to make this class to work, the key must be 
         # enter as tem, hum, lgt, pir
@@ -54,7 +54,7 @@ class Mapping:
 
     def get(self,key):
         # This function is to get values in list
-        # require enter self.get(key)
+        # Require enter self.get(key) in main function
         # In order to make this class to work, the key must be 
         # enter as tem, hum, lgt, pir
         result = []
@@ -71,8 +71,42 @@ class Mapping:
             result = [None]
         return result     # return a none list
 
+    def print_data(self,key):
+        # This function is to print values in each list
+        # Require enter self.print_data(key) in main function
+        # In order to make this class to work, the key must be 
+        # enter as tem, hum, lgt, pir
+        if(key == 'tem'):
+            print("Temperature data display:")
+            print(self.tem_list)
+        elif(key == 'hum'):
+            print("Humidity data display:")
+            print(self.hum_list)            
+        elif(key == 'lgt'):
+            print("Illuminance data display:")
+            print(self.lgt_list)
+        elif(key == 'pir'):
+            print("PIR sensor data display:")
+            print(self.PIR_list)
+        else: 
+            print("List not found")
+
+    def print_all(self):
+        # This function is to display all lists
+        # Require to enter self.print_all() in main function
+        print("Temperature data display:")
+        print(self.tem_list)
+        print("Humidity data display:")
+        print(self.hum_list)
+        print("Illuminance data display:")
+        print(self.lgt_list)
+        print("PIR sensor data display:")
+        print(self.PIR_list)
+
 if __name__ == "__main__":
+    # testing
     d = Mapping('Bedroom')
+    
     d.add_data('tem',23.1)
     d.add_data('tem',23.2)
     d.add_data('tem',23.2)
@@ -80,18 +114,21 @@ if __name__ == "__main__":
     d.add_data('tem',23.1)
     d.add_data('tem',23.2)
     d.add_data('tem',23.2)
+    
     d.add_data('hum',10)
     d.add_data('hum',10.1)
     d.add_data('hum',10.2)
     d.add_data('hum',10.2)
     d.add_data('hum',10.1)
     d.add_data('hum',10.3)
+    
     d.add_data('lgt',100)
     d.add_data('lgt',100.1)
     d.add_data('lgt',100.2)
     d.add_data('lgt',100.2)
     d.add_data('lgt',100.1)
     d.add_data('lgt',100.3)
+    
     d.add_data('pir',1)
     d.add_data('pir',1)
     d.add_data('pir',0)
@@ -99,11 +136,4 @@ if __name__ == "__main__":
     d.add_data('pir',0)
     d.add_data('pir',1)
 
-    a = d.get('tem')
-    print(a)
-    b = d.get('pir')
-    print(b)
-    c = d.get('lgt')
-    print(c)
-    e = d.get('hum')
-    print(e)
+    d.print_all()
