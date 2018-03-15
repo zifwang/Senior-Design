@@ -5,30 +5,21 @@
 import PRi.GPIO as GPIO
 import time
 
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 
 # Define input pins
 # define the input pins that goes to the circuit
 # Modify based on the PCB
-# temp sensor and light sensor use ADC convert
-# ADC converter has 8-bit output
-ADC_out_LSB = 
-ADC_out_bit1 = 
-ADC_out_bit2 = 
-ADC_out_bit3 = 
-ADC_out_bit4 = 
-ADC_out_bit5 = 
-ADC_out_bit6 = 
-ADC_out_MSB = 
-#PIR pin
-PIR_pin = 
 
-# define the input pins that goes to the circuit
-# Modify based on the PCB
-temp_pin =
-light_pin = 
-PIR_pin =
-light_control_pin = 
+
+
+PIR_pin =  # PIR sensor into raspberry pi
+
+temp_pin =   #Tempature & humndity sensor into raspberry pi
+
+light_pin =  # ADC convert light sensor reading into raspberry pi
+
+light_control_pin = # light control pin 
 
 
 
