@@ -53,7 +53,7 @@ class Mapping:
         # This function is to print values in each list
         # Require enter self.print_data(key) in main function
         # In order to make this class to work, the key must be 
-        # enter as tem, hum, lgt, pir
+        # enter as tem, hum, lgt, pir, or all
         if(key == 'tem'):
             print("Temperature data display:")
             print(self.tem_list)
@@ -66,20 +66,20 @@ class Mapping:
         elif(key == 'pir'):
             print("PIR sensor data display:")
             print(self.PIR_list)
+        elif(key == 'all'):
+            print("Temperature data display:")
+            print(self.tem_list)
+            print("Humidity data display:")
+            print(self.hum_list)
+            print("Illuminance data display:")
+            print(self.lgt_list)
+            print("PIR sensor data display:")
+            print(self.PIR_list)
         else: 
             print("List not found")
 
-    def print_all(self):
-        # This function is to display all lists
-        # Require to enter self.print_all() in main function
-        print("Temperature data display:")
-        print(self.tem_list)
-        print("Humidity data display:")
-        print(self.hum_list)
-        print("Illuminance data display:")
-        print(self.lgt_list)
-        print("PIR sensor data display:")
-        print(self.PIR_list)
+    def table_data(self,key):
+        print("Data display as a table")
 
     def draw_data(self,key):
         # This function is to draw data from list
@@ -185,6 +185,35 @@ class Mapping:
         else:
             print("Key entered is not found")
 
+# keyboard interrupt
+# get user input while running program
+# enter 'h' or 'help' open help table
+# enter 'draw' to select which sensors' graph to draw
+# enter 'light' to control light
+# enter 'stop' to stop monitor 
+
+
+# light control
+
+
+# hour selecting 
+
+
+# help table 
+
+
+# stop handle
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
@@ -220,6 +249,6 @@ if __name__ == "__main__":
     d.add_data('pir',0)
     d.add_data('pir',1)
 
-    d.print_all()
+    d.print_data('all')
 
     d.draw_data('all')
