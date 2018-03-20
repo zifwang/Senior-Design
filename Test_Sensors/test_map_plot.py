@@ -225,10 +225,13 @@ def get_user_input():
     c = getch.getch()
 
     if(c == 'h'):
+        # help table printing
         help_printing()
     elif(c == 's'):
+        # Stop the program
         sys.exit()
     elif(c == 'l'):
+        # Light control
         char = input("Do you want to turn on or turn off the light? --enter on to turn on the light or off to turn off: ")
         if(char == 'on'):
             # In PI, define the output pin to turn on the light
@@ -236,16 +239,13 @@ def get_user_input():
         else: 
             print("light is off")
     elif(c == 'd'):
-        # display graph here
-        # print("draw graph")
+        # display graph
         char = input("Graph Display, enter 'tem' for temperature graph, 'hum' for humidity graph, 'lgt' for illuminance level graph, 'pir' for Motion graph, 'all' for display all four data: ")
         d.draw_data(char)
     else:
+        # Command not found
         print("Wrong command")
-
-# light control
-
-
+        
 # hour selecting 
 
 
