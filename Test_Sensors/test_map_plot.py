@@ -229,18 +229,17 @@ def get_user_input():
     elif(c == 's'):
         sys.exit()
     elif(c == 'l'):
-        print("Do you want to turn on or turn off the light? --enter on to turn n the light or f to turn off")
-        
-        char = getch.getch()
-
-        if(char == 'n'):
+        char = input("Do you want to turn on or turn off the light? --enter on to turn on the light or off to turn off: ")
+        if(char == 'on'):
             # In PI, define the output pin to turn on the light
             print("light is on")
         else: 
             print("light is off")
     elif(c == 'd'):
         # display graph here
-        print("draw graph")
+        # print("draw graph")
+        char = input("Graph Display, enter 'tem' for temperature graph, 'hum' for humidity graph, 'lgt' for illuminance level graph, 'pir' for Motion graph, 'all' for display all four data: ")
+        d.draw_data(char)
     else:
         print("Wrong command")
 
