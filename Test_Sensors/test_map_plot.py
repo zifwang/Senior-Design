@@ -49,6 +49,33 @@ class Mapping:
             result = [None]
         return result     # return a none list
 
+    def print_last_data(self,key):
+        # This function is to print values in each list
+        # Require enter self.print_last_data(key) in main function
+        # In order to make this class to work, the key must be 
+        # enter as tem, hum, lgt, pir, or all
+        if(key == 'tem'):
+            print("Current Temperature: ", self.tem_list[-1])
+        elif(key == 'hum'):
+            print("Current Humidity: ", self.hum_list[-1])
+        elif(key == 'lgt'):
+            print("Current Illuminance Level: ", self.lgt_list[-1])
+        elif(key == 'pir'):
+            pir = self.PIR_list[-1]
+            if(pir == 1):
+                print("There is people in the room right now.")
+            else:
+                print("Room is empty right now")
+        elif(key == 'all'):
+            print("Current Temperature: ", self.tem_list[-1])
+            print("Current Humidity: ", self.hum_list[-1])
+            print("Current Illuminance Level: ", self.lgt_list[-1])
+            pir = self.PIR_list[-1]
+            if(pir == 1):
+                print("There is people in the room right now.")
+            else:
+                print("Room is empty right now")
+
     def print_data(self,key):
         # This function is to print values in each list
         # Require enter self.print_data(key) in main function
@@ -134,7 +161,7 @@ class Mapping:
             # show image
             plt.show()
         elif (key == 'all'):
-            print("Key all entered")
+            # print("Key all entered")
             # Get all data
             data_tem = self.tem_list
             data_hum = self.hum_list
@@ -184,6 +211,7 @@ class Mapping:
                   
         else:
             print("Key entered is not found")
+    
 
 # keyboard interrupt
 # get user input while running program
@@ -199,9 +227,11 @@ class Mapping:
 # hour selecting 
 
 
-# help table 
-
-
+# help table    
+def help_printing():
+    print("Options                          description")
+    print("-h                                          ")
+    print("-")
 # stop handle
 
 
@@ -217,6 +247,7 @@ class Mapping:
 
 
 if __name__ == "__main__":
+    help_printing()
     # testing
     d = Mapping('Bedroom')
     
@@ -249,6 +280,6 @@ if __name__ == "__main__":
     d.add_data('pir',0)
     d.add_data('pir',1)
 
-    d.print_data('all')
-
-    d.draw_data('all')
+    #  d.print_data('all')
+    d.print_last_data('all')
+    #  d.draw_data('all')
