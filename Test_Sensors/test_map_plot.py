@@ -1,6 +1,8 @@
 # Test map & plot function in python
 import numpy as np                      # Enable numpy array
 import matplotlib.pyplot as plt         # Enable plot function
+import getch                            # Enable get char function
+import sys
 from matplotlib.ticker import NullFormatter  
 
 class Mapping:
@@ -215,11 +217,32 @@ class Mapping:
 
 # keyboard interrupt
 # get user input while running program
-# enter 'h' or 'help' open help table
-# enter 'draw' to select which sensors' graph to draw
-# enter 'light' to control light
-# enter 'stop' to stop monitor 
+# enter 'h' open help table
+# enter 'd' to select which sensors' graph to draw
+# enter 'l' to control light
+# enter 's' to stop monitor 
+def get_user_input():
+    c = getch.getch()
 
+    if(c == 'h'):
+        help_printing()
+    elif(c == 's'):
+        sys.exit()
+    elif(c == 'l'):
+        print("Do you want to turn on or turn off the light? --enter on to turn n the light or f to turn off")
+        
+        char = getch.getch()
+
+        if(char == 'n'):
+            # In PI, define the output pin to turn on the light
+            print("light is on")
+        else: 
+            print("light is off")
+    elif(c == 'd'):
+        # display graph here
+        print("draw graph")
+    else:
+        print("Wrong command")
 
 # light control
 
@@ -229,21 +252,11 @@ class Mapping:
 
 # help table    
 def help_printing():
-    print("Options                          description")
-    print("-h                                          ")
-    print("-")
-# stop handle
-
-
-
-
-
-
-
-
-
-
-
+    print("Options                          Description")
+    print("help                                         ")
+    print("light                            Light Control")
+    print("draw                              Draw Graph")
+    print("stop                              Stop Program")
 
 
 if __name__ == "__main__":
@@ -283,3 +296,6 @@ if __name__ == "__main__":
     #  d.print_data('all')
     d.print_last_data('all')
     #  d.draw_data('all')
+
+    while True:
+        get_user_input()
