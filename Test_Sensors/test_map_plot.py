@@ -221,6 +221,7 @@ class Mapping:
 # enter 'd' to select which sensors' graph to draw
 # enter 'l' to control light
 # enter 's' to stop monitor 
+# enter 'p' to print current data 
 def get_user_input():
     c = getch.getch()
 
@@ -242,6 +243,9 @@ def get_user_input():
         # display graph
         char = input("Graph Display, enter 'tem' for temperature graph, 'hum' for humidity graph, 'lgt' for illuminance level graph, 'pir' for Motion graph, 'all' for display all four data: ")
         d.draw_data(char)
+    elif(c == 'p'):
+        char = input("Current Data Display, enter 'tem' for temperature, 'hum' for humidity, 'lgt' for illuminance level, 'pir' for human motion, 'all' to display all data: ")
+        d.print_last_data(char)
     else:
         # Command not found
         print("Wrong command")
@@ -252,49 +256,62 @@ def get_user_input():
 # help table    
 def help_printing():
     print("Options                          Description")
-    print("help                                         ")
-    print("light                            Light Control")
-    print("draw                              Draw Graph")
-    print("stop                              Stop Program")
+    print("h                          For printing avaliable commands")
+    print("l                                Light Control")
+    print("d                                Graph Display")
+    print("p                              Print Current Data")
+    print("s                                 Stop Program")
 
 
 if __name__ == "__main__":
     help_printing()
-    # testing
+    # # testing
     d = Mapping('Bedroom')
     
-    d.add_data('tem',23.1)
-    d.add_data('tem',23.2)
-    d.add_data('tem',23.2)
-    d.add_data('tem',23.3)
-    d.add_data('tem',23.1)
-    d.add_data('tem',23.2)
-    d.add_data('tem',23.2)
+    # d.add_data('tem',23.1)
+    # d.add_data('tem',23.2)
+    # d.add_data('tem',23.2)
+    # d.add_data('tem',23.3)
+    # d.add_data('tem',23.1)
+    # d.add_data('tem',23.2)
+    # d.add_data('tem',23.2)
     
-    d.add_data('hum',10)
-    d.add_data('hum',10.1)
-    d.add_data('hum',10.2)
-    d.add_data('hum',10.2)
-    d.add_data('hum',10.1)
-    d.add_data('hum',10.3)
+    # d.add_data('hum',10)
+    # d.add_data('hum',10.1)
+    # d.add_data('hum',10.2)
+    # d.add_data('hum',10.2)
+    # d.add_data('hum',10.1)
+    # d.add_data('hum',10.3)
     
-    d.add_data('lgt',100)
-    d.add_data('lgt',100.1)
-    d.add_data('lgt',100.2)
-    d.add_data('lgt',100.2)
-    d.add_data('lgt',100.1)
-    d.add_data('lgt',100.3)
+    # d.add_data('lgt',100)
+    # d.add_data('lgt',100.1)
+    # d.add_data('lgt',100.2)
+    # d.add_data('lgt',100.2)
+    # d.add_data('lgt',100.1)
+    # d.add_data('lgt',100.3)
     
-    d.add_data('pir',1)
-    d.add_data('pir',1)
-    d.add_data('pir',0)
-    d.add_data('pir',0)
-    d.add_data('pir',0)
-    d.add_data('pir',1)
+    # d.add_data('pir',1)
+    # d.add_data('pir',1)
+    # d.add_data('pir',0)
+    # d.add_data('pir',0)
+    # d.add_data('pir',0)
+    # d.add_data('pir',1)
 
-    #  d.print_data('all')
-    d.print_last_data('all')
-    #  d.draw_data('all')
+    # #  d.print_data('all')
+    # d.print_last_data('all')
+    # #  d.draw_data('all')
+
+    t = 23
+    h = 10
+    l = 100
+    i = 1
 
     while True:
+        d.add_data('tem',t)
+        d.add_data('hum',h)
+        d.add_data('lgt',l)
+        d.add_data('pir',i)
         get_user_input()
+        t = t + 0.1
+        h = h + 0.1
+        l = l + 0.1
