@@ -366,10 +366,12 @@ def data_from_light_sensor():
 #############################################################
 # Collect data from PIR sensor
 # use def here to build function
+def data_from_PIR_sensor():
+    result = float(GPIO.input(PIR_pin))
+    return result
+#############################################################
 
-
-
-
+#############################################################
 # Collect data from Temperature senor
 # use def here to build function
 
