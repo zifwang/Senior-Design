@@ -16,12 +16,15 @@ GPIO.setmode(GPIO.BCM)             # Set GPIO output pins format
 # Define input pins
 # define the input pins that goes to the circuit
 # Modify based on the PCB
-
 PIR_pin =  # PIR sensor into raspberry pi
 
-temp_pin =   #Tempature & humndity sensor into raspberry pi
+temp_pin =   #Tempature & humndity sensor data into raspberry pi
 
-light_pin =  # ADC convert light sensor reading into raspberry pi
+light_pin =  # Light sensor data into raspberry pi
+
+light_clk =  # CLK input into light sensor
+
+light_cs =  # CS input into light sensor
 
 light_control_pin = # light control pin 
 
@@ -295,13 +298,72 @@ def help_printing():
     print("s                                 Stop Program")
 #############################################################
 
+
+# PIR_pin =  # PIR sensor into raspberry pi
+
+# temp_pin =   #Tempature & humndity sensor data into raspberry pi
+
+# light_pin =  # Light sensor data into raspberry pi
+
+# light_clk =  # CLK input into light sensor
+
+# light_cs =  # CS input into light sensor
 #############################################################
 # Collect data from light sensor
+# convert_to_tens function is used to convert binary number into decimal
+def convert_to_tens(digit_array):
+   result = 0
+   length = len(digit_array)
+   t0 = 0
+   while (t0<length):
+      t1 = digit_array[t0]
+
+      t2 = length - 1
+      t2 = t2 - t0
+      while(t2>0):
+         t1 = t1 * 2
+         t2 = t2 - 1
+      result = result + t1
+      t0 = t0 + 1
+   return result
+   
 # use def here to build function
+def data_from_light_sensor():
+    # create a list of binary data
+    data = []
+    # GPIO pin set up
+    GPIO.setup(light_clk, GPIO.OUT)
+    GPIO.setup(light_cs, GPIO.OUT)
+    GPIO.setup(light_pin, GPIO.IN)
+    # Set ligth_cs to be high to start up light sensor
+    GPIO.output(light_cs, GPIO.HIGH)
+    # Give a time for light sensor to be stable
+    time.sleep(0.5)
 
+    # Collecting data
+    for j in range(0,1):
+        # Set light_cs to be low to start collecting data
+        GPIO.output(light_cs, GPIO.LOW)
+        for i in range(0,16): 
+            time.sleep(0.1)
+            GPIO.output(light_clk, GPIO.LOW)
+            time.sleep(0.1)
+            GPIO.output(light_clk, GPIO.HIGH)
+            # put data into list
+            data.insert(i,GPIO.input(light_pin))
+        # Set light_cs back to high again
+        GPIO.output(light_cs, GPIO.HIGH)
 
+    # the first 5 bits and the last 5 bits are useless
+    del data[12:16]
+    del data[0:4]
 
+    # Convert data to decimal 
+    result = convert_to_tens(data)
+    return result
+#############################################################
 
+#############################################################
 # Collect data from PIR sensor
 # use def here to build function
 
