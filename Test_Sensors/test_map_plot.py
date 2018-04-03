@@ -249,6 +249,8 @@ def get_user_input():
     else:
         # Command not found
         print("Wrong command")
+        # When user enter a wrong command, display the help table
+        help_printing()
         
 # hour selecting 
 
