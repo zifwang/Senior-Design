@@ -10,6 +10,7 @@ import sys                         # Enable exit function
 from matplotlib.ticker import NullFormatter 
 
 
+
 GPIO.setmode(GPIO.BCM)             # Set GPIO output pins format
 
 ############################################################
