@@ -379,6 +379,28 @@ def data_from_PIR_sensor():
 
 
 
+#############################################################
+if __name__ == "__main__":
+    # print help function
+
+
+
+    # declare the data struct
+
+
+
+    # while_loop goes to here 
+        # Push light sensor data to data struct
+
+        # Push PIR sensor data to data struct
+
+        # Push Temperature sensor data to data struct
+
+        # get user input
+
+
+
+
 
 
 
