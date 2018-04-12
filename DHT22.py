@@ -247,7 +247,7 @@ if __name__ == "__main__":
 
     pi = pigpio.pi()
 
-    s = DHT22.sensor(pi, 22, LED=16, power=8)
+    s = DHT22.sensor(pi, 4, LED=16, power=8)
 
     r = 0
 
@@ -257,7 +257,15 @@ if __name__ == "__main__":
 
     time.sleep(0.2)
 
-    print("{} {} {} {:3.2f} {} {} {} {}".format(
-         r, s.humidity(), s.temperature(), s.staleness(),
-         s.bad_checksum(), s.short_message(), s.missing_message(),
-         s.sensor_resets()))
+    hum = s.humidity()
+
+    tem = s.temperature()
+
+    print(hum)
+    print(tem)
+   
+
+##    print("{} {} {} {:3.2f} {} {} {} {}".format(
+##         r, s.humidity(), s.temperature(), s.staleness(),
+##         s.bad_checksum(), s.short_message(), s.missing_message(),
+##         s.sensor_resets()))
