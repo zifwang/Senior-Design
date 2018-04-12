@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt    # Enable plot function
 import getch                       # Enable get_character
 import sys                         # Enable exit function
 from matplotlib.ticker import NullFormatter 
-
+from DHT22 import hum, tem         # From DHT22.py import hum and tem
 
 
 GPIO.setmode(GPIO.BCM)             # Set GPIO output pins format
@@ -375,7 +375,7 @@ def data_from_PIR_sensor():
 #############################################################
 # Collect data from Temperature senor
 # use def here to build function
-
+# No Code require here. It is import from DHT22.py
 
 
 
@@ -383,14 +383,15 @@ def data_from_PIR_sensor():
 #############################################################
 if __name__ == "__main__":
     # print help function
-
+    help_printing()
 
 
     # declare the data struct
-
+    
 
 
     # while_loop goes to here 
+    while True:
         # Push light sensor data to data struct
 
         # Push PIR sensor data to data struct
@@ -398,6 +399,7 @@ if __name__ == "__main__":
         # Push Temperature sensor data to data struct
 
         # get user input
+        get_user_input()
 
 
 
