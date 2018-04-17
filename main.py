@@ -394,12 +394,16 @@ if __name__ == "__main__":
     while True:
         # Push light sensor data to data struct
         LIG = data_from_light_sensor()
-        room.add_data('lgt',l)
+        room.add_data('lgt',LIG)
         # Push PIR sensor data to data struct
         PIR = data_from_PIR_sensor()
-        room.add_data('pir',i)
+        room.add_data('pir',PIR)
         # Push Temperature sensor data to data struct
-
+        h = hum
+        room.add_data('hum',h)
+        t = tem
+        room.add_data('tem',t)
+        # Push data struct from local to internet
         # get user input
         get_user_input()
 
