@@ -387,15 +387,17 @@ if __name__ == "__main__":
 
 
     # declare the data struct
-    
+    room = Mapping('SomeRoom')
 
 
     # while_loop goes to here 
     while True:
         # Push light sensor data to data struct
-
+        LIG = data_from_light_sensor()
+        room.add_data('lgt',l)
         # Push PIR sensor data to data struct
-
+        PIR = data_from_PIR_sensor()
+        room.add_data('pir',i)
         # Push Temperature sensor data to data struct
 
         # get user input
